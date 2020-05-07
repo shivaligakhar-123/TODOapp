@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- adds dynamic title to the page -->
+        <title>
+            <%=title %>
+        </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <!-- this toggle button changes the theme please try once -->
+        <div class="toggle-bttn">
+            <label class="switch">
+                <input type="checkbox" onclick="myFunction()">
+                <span class="slider round"></span>
+              </label>
+        </div>
+        <span id="toggle_desc"> Toggle button to change theme!!!</span>
+        <!-- here starts my todo box -->
+        <div id="todo-box">
+            <h1 id ="heading"><i class="fa fa-tasks" aria-hidden="true"></i> TODO App</h1>
+            <!-- form is created here and adds the task through this form -->
+            <form action="create_task" method="post">
+                <!-- adds description -->
+                <div id="form-item">
+                    <label for="desc" id="label">Description:</label><br>
+                    <input type="text" name="description" id="desc" class="input-decor" placeholder="What do you need to do?" required>
+                </div>
+                <!-- adds catagory -->
+                <div id="form-item">
+                    <label for="dropdown" id="label">Catagory:</label><br>
+                    <select id="dropdown" name="catagory" class="input-decor" required>
+                        <option value="" disabled selected hidden>Choose the Catagory</option>
+                        <option value="PERSONAL">Personal</option>
+                        <option value="WORK">Work</option>
+                        <option value="CLEANING">Cleaning</option>
+                        <option value="SCHOOL">School</option>
+                        <option value="OTHERS">Others</option>
+                    </select>
+                </div>
+                <!-- adds date -->
+                <div id="form-item">
+                    <label for="date" id="label">Choose Date:</label><br>
+                    <input type="date" id="date unstyled"  class="input-decor" name="date" required>
+                </div>
+                <!-- add button is added here -->
+                <button type="submit" id="add"><i class="fa fa-plus" aria-hidden="true"></i> 
+                    ADD TASK
+                </button>
+            </form>
+            <!-- next form starts here for deleting multiple tasks -->
+            <form action="delete_task" method="POST">
+                <button type="submit" id="delete">
+                    <i class="fa fa-trash-o"></i>
+                    DELETE TASKS
+                </button>
+                <ul>
+                <% for(let i of todo_list){%>
+                    <li> 
+                        <div class="list-box">
+                                <span>
+                                    <input type="checkbox" id="box" name="check <%= i._id %>" value="<%= i._id %>">
+                                </span>
+                                
+                                    <span id="task_desc">
+                                        <%=i.description%>
+                                    </span>
+                                    <!-- this if else condition changes div color for diffrent category -->
+                                    <% if(i.catagory=="PERSONAL"){ %>
+                                        <div id="task_catagory" class="red">
+                                            <%=i.catagory%>
+                                        </div>
+                                    <%} else if (i.catagory=="WORK"){ %>
+                                        <div id="task_catagory" class="darkviolet">
+                                            <%=i.catagory%>
+                                        </div>
+                                   <% } else if (i.catagory=="CLEANING"){ %>
+                                        <div id="task_catagory" class="yellow">
+                                            <%=i.catagory%>
+                                        </div>
+                                    <% } else if (i.catagory=="SCHOOL"){ %>
+                                        <div id="task_catagory" class="orange">
+                                            <%=i.catagory%>
+                                        </div>
+                                    <% } else if (i.catagory=="OTHERS"){ %>
+                                        <div id="task_catagory" class="green">
+                                            <%=i.catagory%>
+                                        </div>
+                                    <% } %>
+                                <!-- display of date -->
+                            <div id="task_date">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> <%=i.date%>
+                            </div>
+                        </div>
+                    </li>
+                   
+                <%}%>
+            </ul>
+            </form>
+        </div>
+        <!-- javascript is added -->
+        <script src="/js/script.js"></script>
+       
+    </body>
+</html>

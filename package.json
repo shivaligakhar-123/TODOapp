@@ -1,0 +1,20 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "my first app",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "jquery": "^3.5.0",
+    "mongoose": "^5.9.9",
+    "nodemon": "^2.0.3",
+    "sweetalert": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shivali Gakhar",
+  "license": "ISC"
+}
